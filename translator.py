@@ -32,13 +32,13 @@ OUTPUT: faqat quyidagi JSON formatida javob ber (```json belgilarsiz, faqat xom 
 }
 """
 
-TELEGRAM_TEMPLATE = """🚨 EXCLUSIVE TRANSFER
-⚽️ {sarlavha}
+TELEGRAM_TEMPLATE = """*🚨 EXCLUSIVE TRANSFER*
+_⚽️ {sarlavha}_
 
 {tafsilot}
 
-Manba: {manba}
-Status: {status_badge}
+*Manba:* {manba}
+*Status:* {status_badge}
 
 📢 @{channel}"""
 
