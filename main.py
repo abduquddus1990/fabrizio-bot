@@ -59,6 +59,9 @@ def _finalize_post(item, result, state, forced_manba=None) -> bool:
         state["posted_ids"].append(item["id"])
         state["last_post_at"] = time.time()
         _mark_players_posted(result, state)
+        # Har bir postdan keyin darhol saqlaymiz - keyinroq jarayon qulasa/vaqt
+        # tugasa ham, allaqachon postlangan narsa qayta postlanmasin.
+        save_state(state)
     else:
         print(f"[Xato] Postlanmadi: {item['id']}")
     return success

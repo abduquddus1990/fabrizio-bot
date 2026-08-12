@@ -46,6 +46,7 @@ jobs:
         run: python main.py
 
       - name: bot_state.json'ni saqlash
+        if: always()
         env:
           GIT_TERMINAL_PROMPT: "0"
         run: |
