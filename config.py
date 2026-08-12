@@ -44,6 +44,20 @@ KEYWORDS = [
     "медосмотр", "аренд", "переговор", "согласие", "контракт", "клуб",
 ]
 
+# Bloklash filtri: shu so'zlardan BIRORTASI xabarda uchrasa, u umuman
+# ko'rib chiqilmaydi (Gemini'ga ham yuborilmaydi) - qimor/stavka reklamalari.
+# no_filter=True bo'lgan manbalar uchun ham bu filtr HAR DOIM ishlaydi.
+BLOCKED_KEYWORDS = [
+    "1xbet", "1хбет", "mostbet", "мостбет", "melbet", "мелбет",
+    "fonbet", "фонбет", "parimatch", "париматч", "betwinner", "бетвиннер",
+    "bet365", "olimpbet", "олимпбет", "winline", "винлайн", "leon", "леон",
+    "stavka", "stavki", "ставка", "ставки", "ставок", "коэффициент",
+    "koeffitsient", "koeffitsent", "прогноз на матч", "прогноз матча",
+    "прогнозы на футбол", "prognoz", "букмекер", "bukmeker", "казино",
+    "kazino", "casino", "промокод", "promokod", "фрибет", "fribet",
+    "azartli o'yin", "азартные игры",
+]
+
 # Gemini modeli
 GEMINI_MODEL = "gemini-3.1-flash-lite"
 

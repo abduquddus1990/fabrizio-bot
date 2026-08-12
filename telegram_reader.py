@@ -37,7 +37,11 @@ def fetch_telegram_items() -> list[dict]:
             for msg in messages:
                 if not msg.text:
                     continue
-                if not no_filter and not any(kw.lower() in msg.text.lower() for kw in keywords):
+
+                text_lower = msg.text.lower()
+                if any(kw.lower() in text_lower for kw in config.BLOCKED_KEYWORDS):
+                    continue
+                if not no_filter and not any(kw.lower() in text_lower for kw in keywords):
                     continue
 
                 image_bytes = None

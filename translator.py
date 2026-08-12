@@ -28,6 +28,10 @@ QOIDALAR:
 - Hech qanday izoh, preambula yozma - faqat JSON qaytar, boshqa hech narsa yo'q
 - Agar matn futbol transferiga umuman aloqador bo'lmasa (masalan turmush qurish,
   match jadvali, reklama, umumiy yangilik), "relevant": false qaytar
+- Agar matn qimor/bukmekerlik reklamasi bo'lsa (stavka, koeffitsient, prognoz,
+  bukmeker kontorasi, kazino, promokod va shunga o'xshash - 1xbet, Mostbet, Melbet,
+  Fonbet, Parimatch kabi xizmatlar tilga olinsa) - BU HAM "relevant": false, hech
+  qachon transfer yangiligi sifatida qabul qilinmaydi
 
 OUTPUT: faqat quyidagi JSON formatida javob ber (```json belgilarsiz, faqat xom JSON):
 {
