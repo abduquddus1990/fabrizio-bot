@@ -122,7 +122,9 @@
     "tg:Romano_tg:38198",
     "tg:Romano_tg:38197",
     "tg:Romano_tg:38196",
-    "tg:Romano_tg:38195"
+    "tg:Romano_tg:38195",
+    "tg:Romano_tg:38200",
+    "tg:Romano_tg:38199"
   ],
   "posted_players": {
     "zion suzuki": 1786445347.327006,
@@ -155,7 +157,7 @@
     "adam wharton": 1786598648.740261,
     "zlatko dalic": 1786614208.720371,
     "folarin balogun": 1786614236.4623475,
-    "davide frattesi": 1786622773.480528,
+    "davide frattesi": 1786635255.0417156,
     "cody gakpo": 1786622790.8646295,
     "bradley barcola": 1786622790.8646295,
     "fabien barthez": 1786622812.8107147,
@@ -164,5 +166,5 @@
     "savio": 1786622849.460387
   },
   "pending": {},
-  "last_post_at": 1786622849.4603853
+  "last_post_at": 1786635255.0417137
 }
