@@ -148,13 +148,16 @@
     "tg:Romano_tg:38221",
     "tg:Romano_tg:38220",
     "tg:Romano_tg:38219",
-    "tg:Romano_tg:38218"
+    "tg:Romano_tg:38218",
+    "tg:fabrizioromano_fans:19301",
+    "tg:Romano_tg:38225",
+    "tg:Romano_tg:38224"
   ],
   "posted_players": {
     "zion suzuki": 1786445347.327006,
     "rafael obrador": 1786458443.0153804,
     "thomas kristensen": 1786458686.8212242,
-    "lionel messi": 1786458700.9891086,
+    "lionel messi": 1786731037.5629077,
     "djed spence": 1786548720.5873225,
     "ferran torres": 1786646475.9316356,
     "iliman ndiaye": 1786472722.3032458,
@@ -175,7 +178,7 @@
     "ayoub bouaddi": 1786548748.5170662,
     "romelu lukaku": 1786560027.1938274,
     "pedro neto": 1786560042.2983224,
-    "cristian romero": 1786569984.3276656,
+    "cristian romero": 1786731005.761634,
     "jhon lucumi": 1786569995.9211164,
     "xavi hernandez": 1786570007.3976114,
     "adam wharton": 1786598648.740261,
@@ -199,8 +202,9 @@
     "mika godts": 1786720168.700673,
     "luis suarez": 1786720137.9392114,
     "liam delap": 1786720150.837365,
-    "trevoh chalobah": 1786720150.837365
+    "trevoh chalobah": 1786720150.837365,
+    "dastan satpayev": 1786731020.879477
   },
   "pending": {},
-  "last_post_at": 1786720180.1959536
+  "last_post_at": 1786731037.562906
 }
