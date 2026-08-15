@@ -155,7 +155,8 @@
     "tg:Romano_tg:38227",
     "tg:Romano_tg:38226",
     "tg:Romano_tg:38223",
-    "tg:Romano_tg:38228"
+    "tg:Romano_tg:38228",
+    "tg:Romano_tg:38229"
   ],
   "posted_players": {
     "zion suzuki": 1786445347.327006,
@@ -168,7 +169,7 @@
     "kalvin phillips": 1786472746.1474686,
     "paul pogba": 1786480111.62466,
     "matteo ruggeri": 1786487294.299427,
-    "enzo fernandez": 1786570020.5440807,
+    "enzo fernandez": 1786766860.6387117,
     "pep chavarria": 1786526457.4537833,
     "jules kounde": 1786526472.3619936,
     "dusan vlahovic": 1786560057.4359696,
@@ -212,5 +213,5 @@
     "aleksey batrakov": 1786737918.1934533
   },
   "pending": {},
-  "last_post_at": 1786741358.5739942
+  "last_post_at": 1786766860.6387103
 }
