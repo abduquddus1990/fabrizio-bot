@@ -156,7 +156,11 @@
     "tg:Romano_tg:38226",
     "tg:Romano_tg:38223",
     "tg:Romano_tg:38228",
-    "tg:Romano_tg:38229"
+    "tg:Romano_tg:38229",
+    "tg:fabrizioromano_fans:19302",
+    "tg:Romano_tg:38232",
+    "tg:Romano_tg:38231",
+    "tg:Romano_tg:38230"
   ],
   "posted_players": {
     "zion suzuki": 1786445347.327006,
@@ -182,20 +186,20 @@
     "rodri": 1786741358.5739958,
     "ayoub bouaddi": 1786548748.5170662,
     "romelu lukaku": 1786560027.1938274,
-    "pedro neto": 1786560042.2983224,
-    "cristian romero": 1786731005.761634,
+    "pedro neto": 1786779845.9082892,
+    "cristian romero": 1786779834.4535148,
     "jhon lucumi": 1786569995.9211164,
     "xavi hernandez": 1786570007.3976114,
     "adam wharton": 1786598648.740261,
     "zlatko dalic": 1786614208.720371,
     "folarin balogun": 1786614236.4623475,
     "davide frattesi": 1786635255.0417156,
-    "cody gakpo": 1786622790.8646295,
+    "cody gakpo": 1786779857.3557417,
     "bradley barcola": 1786708843.1870112,
     "fabien barthez": 1786622812.8107147,
     "zinedine zidane": 1786622812.8107147,
     "jeremy doku": 1786622829.380126,
-    "savio": 1786622849.460387,
+    "savio": 1786779857.3557417,
     "tijjani reijnders": 1786646488.7667334,
     "fikayo tomori": 1786646501.2349281,
     "youssouf fofana": 1786646501.2349281,
@@ -210,8 +214,9 @@
     "trevoh chalobah": 1786720150.837365,
     "dastan satpayev": 1786731020.879477,
     "ciro immobile": 1786737904.3192453,
-    "aleksey batrakov": 1786737918.1934533
+    "aleksey batrakov": 1786737918.1934533,
+    "darwin guagua": 1786779823.1393611
   },
   "pending": {},
-  "last_post_at": 1786766860.6387103
+  "last_post_at": 1786779857.3557403
 }
