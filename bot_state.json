@@ -176,7 +176,10 @@
     "tg:Romano_tg:38242",
     "tg:Romano_tg:38241",
     "tg:Romano_tg:38240",
-    "tg:Romano_tg:38243"
+    "tg:Romano_tg:38243",
+    "tg:fabrizioromano_fans:19308",
+    "tg:Romano_tg:38245",
+    "tg:Romano_tg:38244"
   ],
   "posted_players": {
     "zion suzuki": 1786808434.1108441,
@@ -219,12 +222,12 @@
     "tijjani reijnders": 1786787578.7116268,
     "fikayo tomori": 1786805076.947493,
     "youssouf fofana": 1786805076.947493,
-    "christopher nkunku": 1786805076.947493,
+    "christopher nkunku": 1786826797.726426,
     "bruno fernandes": 1786646514.3675628,
     "kim min-jae": 1786646530.9073842,
     "benoit badiashile": 1786656468.732983,
     "victor osimhen": 1786795245.1114562,
-    "mika godts": 1786720168.700673,
+    "mika godts": 1786826776.6202557,
     "luis suarez": 1786720137.9392114,
     "liam delap": 1786805064.8860395,
     "trevoh chalobah": 1786720150.837365,
@@ -242,5 +245,5 @@
     "taiwo awoniyi": 1786813000.6507428
   },
   "pending": {},
-  "last_post_at": 1786820535.1365116
+  "last_post_at": 1786826797.7264242
 }
