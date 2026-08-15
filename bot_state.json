@@ -160,7 +160,9 @@
     "tg:fabrizioromano_fans:19302",
     "tg:Romano_tg:38232",
     "tg:Romano_tg:38231",
-    "tg:Romano_tg:38230"
+    "tg:Romano_tg:38230",
+    "tg:fabrizioromano_fans:19303",
+    "tg:Romano_tg:38233"
   ],
   "posted_players": {
     "zion suzuki": 1786445347.327006,
@@ -168,7 +170,7 @@
     "thomas kristensen": 1786458686.8212242,
     "lionel messi": 1786731037.5629077,
     "djed spence": 1786548720.5873225,
-    "ferran torres": 1786646475.9316356,
+    "ferran torres": 1786787590.568138,
     "iliman ndiaye": 1786472722.3032458,
     "kalvin phillips": 1786472746.1474686,
     "paul pogba": 1786480111.62466,
@@ -200,7 +202,7 @@
     "zinedine zidane": 1786622812.8107147,
     "jeremy doku": 1786622829.380126,
     "savio": 1786779857.3557417,
-    "tijjani reijnders": 1786646488.7667334,
+    "tijjani reijnders": 1786787578.7116268,
     "fikayo tomori": 1786646501.2349281,
     "youssouf fofana": 1786646501.2349281,
     "christopher nkunku": 1786720180.1959558,
@@ -218,5 +220,5 @@
     "darwin guagua": 1786779823.1393611
   },
   "pending": {},
-  "last_post_at": 1786779857.3557403
+  "last_post_at": 1786787590.5681362
 }
