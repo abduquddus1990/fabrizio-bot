@@ -163,7 +163,8 @@
     "tg:Romano_tg:38230",
     "tg:fabrizioromano_fans:19303",
     "tg:Romano_tg:38233",
-    "tg:fabrizioromano_fans:19304"
+    "tg:fabrizioromano_fans:19304",
+    "tg:Romano_tg:38234"
   ],
   "posted_players": {
     "zion suzuki": 1786445347.327006,
@@ -186,7 +187,7 @@
     "myles lewis-skelly": 1786536318.5768414,
     "geronimo rulli": 1786536332.15362,
     "nahuel molina": 1786536344.1037266,
-    "rodri": 1786741358.5739958,
+    "rodri": 1786794004.9655595,
     "ayoub bouaddi": 1786548748.5170662,
     "romelu lukaku": 1786560027.1938274,
     "pedro neto": 1786779845.9082892,
@@ -221,5 +222,5 @@
     "darwin guagua": 1786779823.1393611
   },
   "pending": {},
-  "last_post_at": 1786787590.5681362
+  "last_post_at": 1786794004.965558
 }
