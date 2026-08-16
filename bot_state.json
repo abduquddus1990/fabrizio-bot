@@ -183,7 +183,8 @@
     "tg:Romano_tg:38246",
     "tg:Romano_tg:38247",
     "tg:Romano_tg:38248",
-    "tg:Romano_tg:38249"
+    "tg:Romano_tg:38249",
+    "tg:Romano_tg:38251"
   ],
   "posted_players": {
     "zion suzuki": 1786856630.3423777,
@@ -237,7 +238,7 @@
     "trevoh chalobah": 1786720150.837365,
     "dastan satpayev": 1786731020.879477,
     "ciro immobile": 1786737904.3192453,
-    "aleksey batrakov": 1786737918.1934533,
+    "aleksey batrakov": 1786874163.800004,
     "darwin guagua": 1786779823.1393611,
     "amar dedic": 1786801421.5250962,
     "nicolas jackson": 1786805064.8860395,
@@ -249,5 +250,5 @@
     "taiwo awoniyi": 1786813000.6507428
   },
   "pending": {},
-  "last_post_at": 1786866361.2190568
+  "last_post_at": 1786874163.8000026
 }
