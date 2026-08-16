@@ -184,10 +184,13 @@
     "tg:Romano_tg:38247",
     "tg:Romano_tg:38248",
     "tg:Romano_tg:38249",
-    "tg:Romano_tg:38251"
+    "tg:Romano_tg:38251",
+    "tg:fabrizioromano_fans:19309",
+    "tg:Romano_tg:38255",
+    "tg:Romano_tg:38254"
   ],
   "posted_players": {
-    "zion suzuki": 1786856630.3423777,
+    "zion suzuki": 1786880460.9717653,
     "rafael obrador": 1786458443.0153804,
     "thomas kristensen": 1786458686.8212242,
     "lionel messi": 1786731037.5629077,
@@ -233,7 +236,7 @@
     "benoit badiashile": 1786656468.732983,
     "victor osimhen": 1786795245.1114562,
     "mika godts": 1786826776.6202557,
-    "luis suarez": 1786720137.9392114,
+    "luis suarez": 1786880449.1305773,
     "liam delap": 1786805064.8860395,
     "trevoh chalobah": 1786720150.837365,
     "dastan satpayev": 1786731020.879477,
@@ -241,7 +244,7 @@
     "aleksey batrakov": 1786874163.800004,
     "darwin guagua": 1786779823.1393611,
     "amar dedic": 1786801421.5250962,
-    "nicolas jackson": 1786805064.8860395,
+    "nicolas jackson": 1786880473.129674,
     "tosin adarabioyo": 1786805064.8860395,
     "pervis estupinan": 1786805076.947493,
     "santiago gimenez": 1786805076.947493,
@@ -250,5 +253,5 @@
     "taiwo awoniyi": 1786813000.6507428
   },
   "pending": {},
-  "last_post_at": 1786874163.8000026
+  "last_post_at": 1786880473.1296728
 }
