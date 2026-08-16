@@ -181,7 +181,8 @@
     "tg:Romano_tg:38245",
     "tg:Romano_tg:38244",
     "tg:Romano_tg:38246",
-    "tg:Romano_tg:38247"
+    "tg:Romano_tg:38247",
+    "tg:Romano_tg:38248"
   ],
   "posted_players": {
     "zion suzuki": 1786856630.3423777,
@@ -189,7 +190,7 @@
     "thomas kristensen": 1786458686.8212242,
     "lionel messi": 1786731037.5629077,
     "djed spence": 1786813013.2467976,
-    "ferran torres": 1786787590.568138,
+    "ferran torres": 1786866361.2190583,
     "iliman ndiaye": 1786472722.3032458,
     "kalvin phillips": 1786472746.1474686,
     "paul pogba": 1786480111.62466,
@@ -247,5 +248,5 @@
     "taiwo awoniyi": 1786813000.6507428
   },
   "pending": {},
-  "last_post_at": 1786856630.3423762
+  "last_post_at": 1786866361.2190568
 }
