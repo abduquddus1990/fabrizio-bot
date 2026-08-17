@@ -11,53 +11,66 @@ import config
 def fetch_telegram_items() -> list[dict]:
     items = []
 
-    if not config.TELEGRAM_SESSION_STRING:
-        print("[Telethon] SESSION_STRING yo'q - Telegram manbalar o'tkazib yuborildi. "
-              "generate_session.py ni ishga tushiring.")
+    if not config.TELEGRAM_SESSION_STRING or not config.TELEGRAM_API_ID or not config.TELEGRAM_API_HASH:
+        print("[Telethon] Telegram API sozlamalari yoki SESSION_STRING to'liq emas. "
+              "generate_session.py ni ishga tushiring yoki .env ni tekshiring.")
         return items
 
-    with TelegramClient(
-        StringSession(config.TELEGRAM_SESSION_STRING),
-        config.TELEGRAM_API_ID,
-        config.TELEGRAM_API_HASH,
-    ) as client:
-        for source in config.TELEGRAM_SOURCES:
-            channel = source["channel"]
-            no_filter = source.get("no_filter", False)
-            keywords = source.get("keywords") or config.KEYWORDS
-            priority = source.get("priority", "primary")
-            fetch_limit = source.get("fetch_limit", 10)
+    try:
+        api_id = int(config.TELEGRAM_API_ID)
+    except (ValueError, TypeError):
+        print(f"[Telethon] Noto'g'ri API_ID: {config.TELEGRAM_API_ID}")
+        return items
 
-            try:
-                messages = client.get_messages(channel, limit=fetch_limit)
-            except Exception as e:
-                print(f"[Telethon xatosi] {channel}: {e}")
-                continue
+    try:
+        with TelegramClient(
+            StringSession(config.TELEGRAM_SESSION_STRING),
+            api_id,
+            config.TELEGRAM_API_HASH,
+        ) as client:
+            for source in config.TELEGRAM_SOURCES:
+                channel = source["channel"]
+                no_filter = source.get("no_filter", False)
+                keywords = source.get("keywords") or config.KEYWORDS
+                priority = source.get("priority", "primary")
+                fetch_limit = source.get("fetch_limit", 30)
 
-            for msg in messages:
-                if not msg.text:
+                try:
+                    messages = client.get_messages(channel, limit=fetch_limit)
+                    # Xabarlarni xronologik tartibda (eskisidan yangisiga) o'tkazamiz
+                    messages = list(reversed(messages))
+                except Exception as e:
+                    print(f"[Telethon xatosi] {channel}: {e}")
                     continue
 
-                text_lower = msg.text.lower()
-                if any(kw.lower() in text_lower for kw in config.BLOCKED_KEYWORDS):
-                    continue
-                if not no_filter and not any(kw.lower() in text_lower for kw in keywords):
-                    continue
+                for msg in messages:
+                    if not msg.text:
+                        continue
 
-                image_bytes = None
-                if msg.photo:
-                    try:
-                        image_bytes = client.download_media(msg, file=bytes)
-                    except Exception as e:
-                        print(f"[Telethon rasm yuklash xatosi] {channel}:{msg.id}: {e}")
+                    text_lower = msg.text.lower()
+                    if any(kw.lower() in text_lower for kw in config.BLOCKED_KEYWORDS):
+                        continue
+                    if not no_filter and not any(kw.lower() in text_lower for kw in keywords):
+                        continue
 
-                items.append({
-                    "id": f"tg:{channel}:{msg.id}",
-                    "text": msg.text,
-                    "source": f"@{channel}",
-                    "image_bytes": image_bytes,
-                    "signature": source.get("signature"),
-                    "priority": priority,
-                    "forced_manba": source.get("forced_manba"),
-                })
+                    image_bytes = None
+                    if msg.photo:
+                        try:
+                            image_bytes = client.download_media(msg, file=bytes)
+                        except Exception as e:
+                            print(f"[Telethon rasm yuklash xatosi] {channel}:{msg.id}: {e}")
+
+                    items.append({
+                        "id": f"tg:{channel}:{msg.id}",
+                        "text": msg.text,
+                        "source": f"@{channel}",
+                        "image_bytes": image_bytes,
+                        "signature": source.get("signature"),
+                        "priority": priority,
+                        "forced_manba": source.get("forced_manba"),
+                    })
+    except Exception as e:
+        print(f"[Telethon ulanish xatosi] {e}")
+
     return items
+

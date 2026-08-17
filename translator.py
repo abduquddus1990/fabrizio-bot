@@ -4,6 +4,7 @@ Telegram post formatiga o'giradi.
 """
 import json
 import re
+import html
 from google import genai
 from google.genai import types
 import config
@@ -25,7 +26,7 @@ QOIDALAR:
   "Arsenal"). Ismlarni kirillchada yoki rus tilida transliteratsiya qilib qoldirma.
 - Summalar va sanalar - o'zgarishsiz qoldiriladi (raqamlar allaqachon universal)
 - Iqtiboslar mazmuni buzilmasdan o'zbek tiliga tarjima qilinadi (rus tilida qoldirilmaydi)
-- Hech qanday izoh, preambula yozma - faqat JSON qaytar, boshqa hech narsa yo'q
+- Faqat toza JSON formatida javob ber.
 - Agar matn futbol transferiga umuman aloqador bo'lmasa (masalan turmush qurish,
   match jadvali, reklama, umumiy yangilik), "relevant": false qaytar
 - Agar matn qimor/bukmekerlik reklamasi bo'lsa (stavka, koeffitsient, prognoz,
@@ -33,42 +34,48 @@ QOIDALAR:
   Fonbet, Parimatch kabi xizmatlar tilga olinsa) - BU HAM "relevant": false, hech
   qachon transfer yangiligi sifatida qabul qilinmaydi
 
-OUTPUT: faqat quyidagi JSON formatida javob ber (```json belgilarsiz, faqat xom JSON):
+OUTPUT JSON formati:
 {
   "relevant": true yoki false,
-  "futbolchilar": ["asosiy futbolchi(lar)ning TO'LIQ ismi va familiyasi, ingliz tilidagi original yozilishida (masalan 'Kylian Mbappe'). Agar bir nechta futbolchi tilga olingan bo'lsa, HAMMASINI shu ro'yxatga qo'sh, faqat bittasini emas"],
+  "futbolchilar": ["futbolchilarning to'liq ismi (masalan 'Kylian Mbappe')"],
   "sarlavha": "qisqa jonli sarlavha",
   "tafsilot": "1-2 jumlada asosiy ma'lumot, summa va muddatlar bilan",
   "holat": "Muzokaralar / Shaxsiy shartlar / Tibbiy ko'rik / Rasman tasdiqlandi",
   "status_badge": "Here We Go! / Kelishuv hal qilindi / Muzokaralar davom etmoqda",
-  "manba": "xabar qaysi manbadan kelgani (agar bilinmasa 'Sport manbalari')"
+  "manba": "xabar qaysi manbadan kelgani (masalan 'Fabrizio Romano' yoki 'Sport manbalari')"
 }
 """
 
-TELEGRAM_TEMPLATE = """*🚨 EXCLUSIVE TRANSFER*
-_⚽️ {sarlavha}_
+TELEGRAM_TEMPLATE_HTML = """<b>🚨 EXCLUSIVE TRANSFER</b>
+<i>⚽️ {sarlavha}</i>
 
 {tafsilot}
 
-*Manba:* {manba}
-*Status:* {status_badge}
+<b>Manba:</b> {manba}
+<b>Status:</b> {status_badge}
 
 📢 @{channel}"""
 
 
-GEMINI_TIMEOUT_MS = 30_000  # bitta Gemini chaqiruvi shuncha vaqtdan ortiq osilib qolmasin
+GEMINI_TIMEOUT_MS = 30_000
 CYRILLIC_RE = re.compile(r"[Ѐ-ӿ]")
 
 
 def _extract_json(text: str) -> dict:
-    cleaned = re.sub(r"```json|```", "", text).strip()
-    return json.loads(cleaned)
+    if not text:
+        return {}
+    cleaned = re.sub(r"```(?:json)?", "", text).strip()
+    try:
+        return json.loads(cleaned, strict=False)
+    except Exception:
+        match = re.search(r"\{[\s\S]*\}", text)
+        if match:
+            try:
+                return json.loads(match.group(0), strict=False)
+            except Exception:
+                pass
+        raise
 
-
-def _escape_markdown(text: str) -> str:
-    for ch in ("_", "*", "`", "["):
-        text = text.replace(ch, "\\" + ch)
-    return text
 
 
 def _has_cyrillic(data: dict) -> bool:
@@ -83,6 +90,7 @@ def _generate(raw_text: str, extra_instruction: str | None = None) -> dict:
         contents=contents,
         config=types.GenerateContentConfig(
             system_instruction=SYSTEM_PROMPT,
+            response_mime_type="application/json",
             http_options=types.HttpOptions(timeout=GEMINI_TIMEOUT_MS),
         ),
     )
@@ -93,37 +101,48 @@ def translate_and_format(raw_text: str, channel_username: str, forced_manba: str
     """
     forced_manba: berilsa, Gemini aniqlagan manba o'rniga shu qiymat ishlatiladi
     """
-    data = _generate(raw_text)
+    try:
+        data = _generate(raw_text)
+    except Exception as e:
+        print(f"[Gemini tarjima xatosi] {e}")
+        return None
 
-    if not data.get("relevant", False):
+    if not data or not data.get("relevant", False):
         return None
 
     if _has_cyrillic(data):
-        # Gemini rus/kirill matnini to'liq tarjima qilmadi - bir marta qattiqroq
-        # ko'rsatma bilan qayta urinamiz.
-        retry_data = _generate(
-            raw_text,
-            extra_instruction="DIQQAT: avvalgi javobingda kirill harflari qoldi. "
-                               "Butun JSON FAQAT lotin alifbosidagi o'zbek tilida bo'lishi shart, "
-                               "hech qanday kirill harfi ishlatma.",
-        )
-        if retry_data.get("relevant", False) and not _has_cyrillic(retry_data):
-            data = retry_data
-        elif _has_cyrillic(data):
-            raise ValueError("Gemini kirill/rus tilidan to'liq tarjima qila olmadi (2 urinishdan keyin ham)")
+        try:
+            retry_data = _generate(
+                raw_text,
+                extra_instruction="DIQQAT: avvalgi javobingda kirill harflari qoldi. "
+                                  "Butun JSON FAQAT lotin alifbosidagi o'zbek tilida bo'lishi shart, "
+                                  "hech qanday kirill harfi ishlatma.",
+            )
+            if retry_data.get("relevant", False) and not _has_cyrillic(retry_data):
+                data = retry_data
+            else:
+                print("[Ogohlantirish] Gemini 2-urinishda ham kirill harflarini qoldirdi. Xabar o'tkazib yuboriladi.")
+                return None
+        except Exception as e:
+            print(f"[Gemini qayta urinish xatosi] {e}")
+            return None
 
-    manba_value = forced_manba if forced_manba else data["manba"]
+    sarlavha = data.get("sarlavha") or "Transfer yangiligi"
+    tafsilot = data.get("tafsilot") or ""
+    status_badge = data.get("status_badge") or "Muzokaralar davom etmoqda"
+    manba_value = forced_manba if forced_manba else (data.get("manba") or "Sport manbalari")
 
-    post_text = TELEGRAM_TEMPLATE.format(
-        sarlavha=_escape_markdown(data["sarlavha"]),
-        tafsilot=_escape_markdown(data["tafsilot"]),
-        manba=_escape_markdown(manba_value),
-        status_badge=_escape_markdown(data["status_badge"]),
+    post_text = TELEGRAM_TEMPLATE_HTML.format(
+        sarlavha=html.escape(sarlavha),
+        tafsilot=html.escape(tafsilot),
+        manba=html.escape(manba_value),
+        status_badge=html.escape(status_badge),
         channel=channel_username,
     )
 
     return {
         "telegram_post": post_text,
-        "sarlavha": data["sarlavha"],
+        "sarlavha": sarlavha,
         "futbolchilar": data.get("futbolchilar") or [],
     }
+

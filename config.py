@@ -12,7 +12,8 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TARGET_CHANNEL = os.getenv("TARGET_CHANNEL")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-TELEGRAM_API_ID = os.getenv("TELEGRAM_API_ID")
+_raw_api_id = os.getenv("TELEGRAM_API_ID")
+TELEGRAM_API_ID = int(_raw_api_id) if _raw_api_id and _raw_api_id.isdigit() else None
 TELEGRAM_API_HASH = os.getenv("TELEGRAM_API_HASH")
 TELEGRAM_SESSION_STRING = os.getenv("TELEGRAM_SESSION_STRING")
 
@@ -29,9 +30,8 @@ TELEGRAM_SOURCES = [
 # Postlar orasidagi minimal interval (soniyada)
 POST_INTERVAL_SECONDS = 10
 
-# Bir xil futbolchi haqida turli kanallardan bir xil yangilik kelsa,
-# ikkinchisini "dublikat" deb hisoblab, postlamaslik uchun shuncha vaqt (soniyada)
-DUPLICATE_PLAYER_WINDOW_SECONDS = 3 * 60 * 60
+# Bir xil xabar dublikat bo'lmasligi uchun vaqt oynasi (soniyada)
+DUPLICATE_WINDOW_SECONDS = 2 * 60 * 60
 
 # Ikkinchi darajali manbalar postlashdan oldin shuncha kutadi (soniyada)
 SECONDARY_HOLD_SECONDS = 2 * 60 * 60
@@ -58,7 +58,11 @@ BLOCKED_KEYWORDS = [
     "azartli o'yin", "азартные игры",
 ]
 
-# Gemini modeli
-GEMINI_MODEL = "gemini-3.1-flash-lite"
+# Gemini modeli - yuqori tezlik va katta kvotali model
+GEMINI_MODEL = "gemini-3.5-flash-lite"
 
-POLL_INTERVAL_SECONDS = 300
+# Botning doimiy siklda (loop) tekshirish intervali (soniyada)
+POLL_INTERVAL_SECONDS = 60
+
+
+

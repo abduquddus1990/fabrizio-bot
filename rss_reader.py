@@ -42,8 +42,12 @@ def fetch_rss_items() -> list[dict]:
             title = entry.get("title", "")
             summary = entry.get("summary", "")
             text = f"{title}\n{summary}"
+            text_lower = text.lower()
 
-            if not any(kw.lower() in text.lower() for kw in config.KEYWORDS):
+            if any(kw.lower() in text_lower for kw in config.BLOCKED_KEYWORDS):
+                continue
+
+            if not any(kw.lower() in text_lower for kw in config.KEYWORDS):
                 continue
 
             items.append({
@@ -55,3 +59,4 @@ def fetch_rss_items() -> list[dict]:
                 "signature": None,
             })
     return items
+
